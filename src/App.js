@@ -1,26 +1,71 @@
-import React from 'react';
+import React, {Component} from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Person from './Person/Person';
 
-function App() {
+class App extends Component {
+
+state = {
+	people: [
+	{ name: 'Momo', age: 29},
+	{ name: 'Popo', age: 45},
+	{ name: 'Crayfish', age: 188}
+
+	]
+}
+
+switchNameHandler = () => {
+
+  this.setState({
+  	people: [
+	{ name: 'Mufasa', age: 29},
+	{ name: 'Popo', age: 45},
+	{ name: 'Simba', age: 4}
+
+	]
+  })
+}
+
+nameChangeHandler = (event) => {
+
+
+  this.setState({
+  	people: [
+	{ name: 'Pow', age: 29},
+	{ name: event.target.value, age: 2},
+	{ name: 'PowPowPow', age: 4}
+
+	]
+  })
+
+}
+
+
+render(){
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+   <h1> HAAAY </h1>
+   <Person 
+   name={this.state.people[0].name} 
+   age ="29"/> 
+   <Person 
+   name="Myra" 
+   age ="29"/> 
+   <Person 
+   name={this.state.people[1].name} 
+   age ={this.state.people[1].age}
+   changed={this.nameChangeHandler}/>
+   <Person 
+   name={this.state.people[2].name} 
+   age ={this.state.people[2].age}/>
+   <Person > the Children of props </Person>
+
+   <button onClick={this.switchNameHandler}> Playing Button </button>
     </div>
   );
+
+ }
 }
 
 export default App;
